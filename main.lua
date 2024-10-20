@@ -465,7 +465,7 @@ function scene.draw()
         gc.print('=', 130, 120 + 20 * i)
         gc.print(keyConf[i], 150, 120 + 20 * i)
     end
-    gc.print('Press Tab to rebind keys', 10, 290)
+    gc.print('Press Tab to rebind keys', 10, 310)
 
     gc.setColor(COLOR.L)
     gc.translate(475, 850)
