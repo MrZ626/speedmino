@@ -439,8 +439,14 @@ function scene.update(dt)
     if moveDir~=0 then
         moveCharge=moveCharge+1
         local chrg=moveCharge
-        if moveCharge==das or moveCharge>das and ((moveCharge-das)%arr==0 or arr==0) then
-            (actions[moveDir==1 and (arr==0 and 'teleRight' or 'moveRight') or (arr==0 and 'teleLeft' or 'moveLeft')] or NULL)()
+        if arr==0 then
+            if moveCharge>=das then
+                (actions[moveDir==1 and 'teleRight' or 'teleLeft'] or NULL)()
+            end
+        else
+            if moveCharge>=das and (moveCharge-das)%arr==0 then
+                (actions[moveDir==1 and 'moveRight' or 'moveLeft'] or NULL)()
+            end
         end
         moveCharge=chrg
     end
