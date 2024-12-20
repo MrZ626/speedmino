@@ -320,11 +320,9 @@ local actions={
         freshGhost()
     end,
 	teleLeft=function()
-        local hx=handX
-        repeat
-            hx=hx-1
-        until testPos(hand, hx, handY)==false
-        handX=hx+1
+        while testPos(hand, handX-1, handY) do
+            handX=handX-1
+        end
         moveCharge=0
         freshGhost()
     end,
@@ -337,11 +335,9 @@ local actions={
         freshGhost()
     end,
 	teleRight=function()
-    local hx=handX
-        repeat
-            hx=hx+1
-        until testPos(hand, hx, handY)==false
-        handX=hx-1
+        while testPos(hand, handX+1, handY) do
+            handX=handX+1
+        end
         moveCharge=0
         freshGhost()
     end,
