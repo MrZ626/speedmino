@@ -319,11 +319,25 @@ local actions={
         moveCharge=0
         freshGhost()
     end,
+	teleLeft=function()
+        while testPos(hand, handX-1, handY) do
+            handX=handX-1
+        end
+        moveCharge=0
+        freshGhost()
+    end,
     moveRight=function()
         if testPos(hand, handX+1, handY) then
             handX=handX+1
         end
         moveDir=1
+        moveCharge=0
+        freshGhost()
+    end,
+	teleRight=function()
+        while testPos(hand, handX+1, handY) do
+            handX=handX+1
+        end
         moveCharge=0
         freshGhost()
     end,
@@ -394,7 +408,7 @@ function scene.keyDown(key)
             elseif sysKey[key]=='das+' then
                 das=das+1
             elseif sysKey[key]=='arr-' then
-                arr=math.max(1, arr-1)
+                arr=math.max(0, arr-1)
             elseif sysKey[key]=='arr+' then
                 arr=arr+1
             end
@@ -425,8 +439,14 @@ function scene.update(dt)
     if moveDir~=0 then
         moveCharge=moveCharge+1
         local chrg=moveCharge
-        if moveCharge==das or moveCharge>das and (moveCharge-das)%arr==0 then
-            (actions[moveDir==1 and 'moveRight' or 'moveLeft'] or NULL)()
+        if arr==0 then
+            if moveCharge>=das then
+                (actions[moveDir==1 and 'teleRight' or 'teleLeft'] or NULL)()
+            end
+        else
+            if moveCharge>=das and (moveCharge-das)%arr==0 then
+                (actions[moveDir==1 and 'moveRight' or 'moveLeft'] or NULL)()
+            end
         end
         moveCharge=chrg
     end
