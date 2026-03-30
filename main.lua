@@ -4,6 +4,8 @@ ZENITHA.setMainLoopSpeed(60)
 ZENITHA.globalEvent.drawCursor=NULL
 ZENITHA.globalEvent.clickFX=NULL
 
+SCR.setSize(1350,900)
+
 SFX.load{
     clear_1='sound/clear_1.ogg',
     clear_2='sound/clear_2.ogg',
