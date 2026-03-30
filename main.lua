@@ -1,6 +1,6 @@
 require'Zenitha'
 ZENITHA.setFirstScene('main')
-ZENITHA.setMaxFPS(60)
+ZENITHA.setMainLoopSpeed(60)
 ZENITHA.globalEvent.drawCursor=NULL
 ZENITHA.globalEvent.clickFX=NULL
 
